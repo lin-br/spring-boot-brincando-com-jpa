@@ -35,6 +35,9 @@ public class ProfilesHasRules {
     @ColumnDefault("CURRENT_TIMESTAMP")
     private Calendar registration_date;
 
+    public ProfilesHasRules() {
+    }
+
     public ProfilesHasRules(Rule rule, Profile profile, User registeredUser) {
         this.rule = rule;
         this.profile = profile;
