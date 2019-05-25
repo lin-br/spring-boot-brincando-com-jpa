@@ -1,0 +1,33 @@
+application:
+  name: @project.name@
+  description: @project.description@
+  version: @project.version@
+
+server:
+  servlet:
+    context-path: /api
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp:
+          use_jdbc_metadata_defaults: false
+        jdbc:
+          time_zone: "GMT-03:00"
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/brincando_com_jpa
+    username: postgres
+    password: 123456
+logging:
+  file:
+    max-size: 1MB
+  level:
+    root: INFO
+    web: INFO
+    sql: INFO
+  path: logs/spring-boot-brincando-com-jpa/
