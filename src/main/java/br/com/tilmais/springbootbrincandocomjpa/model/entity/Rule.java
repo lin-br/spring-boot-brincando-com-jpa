@@ -24,7 +24,6 @@ public class Rule {
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
     @ColumnDefault("CURRENT_TIMESTAMP")
     private Calendar created_at;
 

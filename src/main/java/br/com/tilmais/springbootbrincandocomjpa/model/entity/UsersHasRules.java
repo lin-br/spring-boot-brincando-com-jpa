@@ -32,7 +32,6 @@ public class UsersHasRules {
     private LinkStatus linkStatus = LinkStatus.ACTIVED;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
     @ColumnDefault("CURRENT_TIMESTAMP")
     private Calendar registration_date;
 

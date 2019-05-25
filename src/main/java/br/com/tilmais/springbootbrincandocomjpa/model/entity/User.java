@@ -34,7 +34,6 @@ public class User {
     private Profile profile;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
     @ColumnDefault("CURRENT_TIMESTAMP")
     private Calendar created_at;
 

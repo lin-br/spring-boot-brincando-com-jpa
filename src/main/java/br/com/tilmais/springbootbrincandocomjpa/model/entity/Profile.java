@@ -20,7 +20,6 @@ public class Profile {
     private String name;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
     @ColumnDefault(value = "CURRENT_TIMESTAMP")
     private Calendar created_at;
 
