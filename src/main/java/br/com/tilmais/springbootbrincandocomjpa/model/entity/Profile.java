@@ -1,6 +1,7 @@
 package br.com.tilmais.springbootbrincandocomjpa.model.entity;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "profiles")
+@DynamicInsert
 public class Profile {
 
     @Id
