@@ -1,7 +1,7 @@
 package br.com.tilmais.springbootbrincandocomjpa.settings;
 
-import br.com.tilmais.springbootbrincandocomjpa.settings.response.exceptions.BasicResponseForExceptions;
-import br.com.tilmais.springbootbrincandocomjpa.settings.response.exceptions.ValidBindingResponseExceptions;
+import br.com.tilmais.springbootbrincandocomjpa.dto.response.exceptions.BasicResponseForExceptions;
+import br.com.tilmais.springbootbrincandocomjpa.dto.response.exceptions.ValidBindingResponseExceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
