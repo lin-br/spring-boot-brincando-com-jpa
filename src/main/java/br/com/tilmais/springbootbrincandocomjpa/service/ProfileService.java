@@ -4,10 +4,10 @@ import br.com.tilmais.springbootbrincandocomjpa.dto.request.ProfileRequestDTO;
 import br.com.tilmais.springbootbrincandocomjpa.dto.response.ProfileResponseDTO;
 import br.com.tilmais.springbootbrincandocomjpa.model.entity.Profile;
 import br.com.tilmais.springbootbrincandocomjpa.model.repository.ProfileRepository;
+import br.com.tilmais.springbootbrincandocomjpa.util.GeneratorURI;
 import br.com.tilmais.springbootbrincandocomjpa.util.ProfileConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class ProfileService {
     public URI registerProfile(ProfileRequestDTO request) {
         Profile profile = new Profile(request.getName());
         Long id = this.repository.save(profile).getId();
-        return ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
+        return GeneratorURI.getUriAddId(id);
     }
 
     public List<ProfileResponseDTO> getAll() {
