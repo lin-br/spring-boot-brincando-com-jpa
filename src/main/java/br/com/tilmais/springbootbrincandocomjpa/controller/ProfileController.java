@@ -1,6 +1,7 @@
 package br.com.tilmais.springbootbrincandocomjpa.controller;
 
 import br.com.tilmais.springbootbrincandocomjpa.dto.request.ProfileRequestDTO;
+import br.com.tilmais.springbootbrincandocomjpa.dto.response.ProfileResponseDTO;
 import br.com.tilmais.springbootbrincandocomjpa.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("profiles")
@@ -23,5 +25,10 @@ public class ProfileController {
     @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity register(@Valid @RequestBody ProfileRequestDTO request) {
         return ResponseEntity.created(this.service.registerProfile(request)).build();
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProfileResponseDTO> getAll() {
+        return this.service.getAll();
     }
 }
