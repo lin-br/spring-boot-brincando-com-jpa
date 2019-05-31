@@ -1,4 +1,4 @@
-package br.com.tilmais.springbootbrincandocomjpa.settings.response.exceptions;
+package br.com.tilmais.springbootbrincandocomjpa.dto.response.exceptions;
 
 import java.util.Calendar;
 
