@@ -16,10 +16,10 @@ import java.util.Calendar;
 @ControllerAdvice
 public class ProjectExceptionsHandler {
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity handlerMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        return ResponseEntity.badRequest().body(this.getValidBindingException(ex.getBindingResult()));
+        return ResponseEntity.unprocessableEntity().body(this.getValidBindingException(ex.getBindingResult()));
     }
 
     private ValidBindingResponseExceptions getValidBindingException(BindingResult errors) {
