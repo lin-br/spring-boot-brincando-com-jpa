@@ -11,7 +11,7 @@ public class ProfileConverter {
                 .setCreated_at(profile.getCreated_at())
                 .setModified_at(profile.getModified_at())
                 .setDeleted_at(profile.getDeleted_at());
-        profile.getRules().forEach(profilesHasRules -> builder.addRule(profilesHasRules.getRule()));
+        profile.getProfilesHasRules().forEach(profilesHasRules -> builder.addRule(profilesHasRules.getRule()));
         return builder.build();
     }
 }
