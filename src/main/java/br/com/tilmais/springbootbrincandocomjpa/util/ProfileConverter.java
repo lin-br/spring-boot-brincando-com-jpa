@@ -6,13 +6,12 @@ import br.com.tilmais.springbootbrincandocomjpa.model.entity.Profile;
 public class ProfileConverter {
 
     public static ProfileResponseDTO getResponseDTO(Profile profile) {
-        return new ProfileResponseDTO(
-                profile.getId(),
-                profile.getName(),
-                profile.getCreated_at(),
-                profile.getModified_at(),
-                profile.getDeleted_at(),
-                profile.getRules()
-        );
+        ProfileResponseDTO.Builder builder = new ProfileResponseDTO.Builder(profile.getName())
+                .setId(profile.getId())
+                .setCreated_at(profile.getCreated_at())
+                .setModified_at(profile.getModified_at())
+                .setDeleted_at(profile.getDeleted_at());
+        profile.getRules().forEach(profilesHasRules -> builder.addRule(profilesHasRules.getRule()));
+        return builder.build();
     }
 }
