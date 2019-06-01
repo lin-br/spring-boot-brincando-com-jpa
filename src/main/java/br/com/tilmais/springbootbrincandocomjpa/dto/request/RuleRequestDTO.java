@@ -9,7 +9,7 @@ public class RuleRequestDTO {
 
     @NotNull
     @Size(min = 5, max = 100)
-    private String url;
+    private String resource;
 
     @NotNull
     private MethodRule method;
@@ -18,8 +18,8 @@ public class RuleRequestDTO {
     @Size(min = 5, max = 140)
     private String description;
 
-    public String getUrl() {
-        return url;
+    public String getResource() {
+        return resource;
     }
 
     public MethodRule getMethod() {

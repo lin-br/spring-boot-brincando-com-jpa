@@ -16,7 +16,7 @@ public class Rule {
     private Long id;
 
     @Column(length = 100, nullable = false)
-    private String url;
+    private String resource;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 6)
@@ -38,8 +38,8 @@ public class Rule {
     public Rule() {
     }
 
-    public Rule(String url, MethodRule method, String description) {
-        this.url = url;
+    public Rule(String resource, MethodRule method, String description) {
+        this.resource = resource;
         this.method = method;
         this.description = description;
     }
@@ -48,12 +48,12 @@ public class Rule {
         return id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getResource() {
+        return resource;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setResource(String resource) {
+        this.resource = resource;
     }
 
     public MethodRule getMethod() {

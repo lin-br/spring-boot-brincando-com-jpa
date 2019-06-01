@@ -7,7 +7,7 @@ import java.util.Calendar;
 public class RuleResponseDTO {
 
     private Long id;
-    private String url;
+    private String resource;
     private MethodRule method;
     private String description;
     private Calendar created_at;
@@ -16,7 +16,7 @@ public class RuleResponseDTO {
 
     private RuleResponseDTO(Builder builder) {
         this.id = builder.id;
-        this.url = builder.url;
+        this.resource = builder.resource;
         this.method = builder.method;
         this.description = builder.description;
         this.created_at = builder.created_at;
@@ -28,8 +28,8 @@ public class RuleResponseDTO {
         return id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getResource() {
+        return resource;
     }
 
     public MethodRule getMethod() {
@@ -55,15 +55,15 @@ public class RuleResponseDTO {
     public static class Builder {
 
         private Long id;
-        private String url;
+        private String resource;
         private MethodRule method;
         private String description;
         private Calendar created_at;
         private Calendar modified_at;
         private Calendar deleted_at;
 
-        public Builder(String url, MethodRule method, String description) {
-            this.url = url;
+        public Builder(String resource, MethodRule method, String description) {
+            this.resource = resource;
             this.method = method;
             this.description = description;
         }
