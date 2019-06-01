@@ -1,18 +1,22 @@
 package br.com.tilmais.springbootbrincandocomjpa.service;
 
 import br.com.tilmais.springbootbrincandocomjpa.dto.request.UserRequestDTO;
+import br.com.tilmais.springbootbrincandocomjpa.dto.response.UserResponseDTO;
 import br.com.tilmais.springbootbrincandocomjpa.model.entity.Profile;
 import br.com.tilmais.springbootbrincandocomjpa.model.entity.SituationUser;
 import br.com.tilmais.springbootbrincandocomjpa.model.entity.User;
 import br.com.tilmais.springbootbrincandocomjpa.model.repository.ProfileRepository;
 import br.com.tilmais.springbootbrincandocomjpa.model.repository.UserRepository;
 import br.com.tilmais.springbootbrincandocomjpa.util.GeneratorURI;
+import br.com.tilmais.springbootbrincandocomjpa.util.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,5 +44,11 @@ public class UserService {
             return GeneratorURI.getUriAddId(id);
         }
         throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "No profile with id: " + request.getProfile());
+    }
+
+    public List<UserResponseDTO> getAll() {
+        List<UserResponseDTO> lista = new ArrayList<>();
+        this.userRepository.findAll().forEach(user -> lista.add(UserConverter.getResponseDTO(user)));
+        return lista;
     }
 }
