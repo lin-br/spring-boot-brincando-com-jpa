@@ -15,7 +15,7 @@ public class UserConverter {
                 .setCreated_at(user.getCreated_at())
                 .setModified_at(user.getModified_at())
                 .setDeleted_at(user.getDeleted_at());
-        user.getRules().forEach(usersHasRules -> builder.addRule(usersHasRules.getRule()));
+        user.getUsersHasRules().forEach(usersHasRules -> builder.addRule(usersHasRules.getRule()));
         return builder.build();
     }
 }

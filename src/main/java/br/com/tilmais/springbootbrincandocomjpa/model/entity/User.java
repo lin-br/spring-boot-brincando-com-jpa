@@ -46,7 +46,7 @@ public class User {
     private Calendar deleted_at;
 
     @OneToMany(mappedBy = "user")
-    private Set<UsersHasRules> rules = new HashSet<>();
+    private Set<UsersHasRules> usersHasRules = new HashSet<>();
 
     public User() {
     }
@@ -103,13 +103,13 @@ public class User {
         this.profile = profile;
     }
 
-    public Set<UsersHasRules> getRules() {
-        return Collections.unmodifiableSet(rules);
+    public Set<UsersHasRules> getUsersHasRules() {
+        return Collections.unmodifiableSet(usersHasRules);
     }
 
     public void addRule(Rule rule, User registeredUser) {
         UsersHasRules usersHasRules = new UsersHasRules(rule, this, registeredUser);
-        this.rules.add(usersHasRules);
+        this.usersHasRules.add(usersHasRules);
     }
 
     public void setName(String name) {
