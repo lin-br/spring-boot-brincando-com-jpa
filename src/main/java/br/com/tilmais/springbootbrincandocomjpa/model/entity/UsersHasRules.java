@@ -29,7 +29,8 @@ public class UsersHasRules {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "link_status", nullable = false, length = 8)
-    private LinkStatus linkStatus = LinkStatus.ACTIVED;
+    @ColumnDefault("'ACTIVED'")
+    private LinkStatus linkStatus;
 
     @Temporal(TemporalType.TIMESTAMP)
     @ColumnDefault("CURRENT_TIMESTAMP")
