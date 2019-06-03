@@ -29,4 +29,9 @@ public class UserController {
     public List<UserResponseDTO> getAll() {
         return this.userService.getAll();
     }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public UserResponseDTO get(@PathVariable Long id) {
+        return this.userService.getUser(id);
+    }
 }

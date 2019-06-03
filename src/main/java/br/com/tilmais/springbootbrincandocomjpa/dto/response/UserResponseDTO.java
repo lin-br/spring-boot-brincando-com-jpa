@@ -86,31 +86,19 @@ public class UserResponseDTO {
         private Calendar deleted_at;
         private Set<RuleResponseDTO> rules = new HashSet<>();
 
-        public Builder(String name, String email, String password, SituationUser situation, ProfileResponseDTO profile) {
+        public Builder(Long id, String name, String email, String password, SituationUser situation, Calendar created_at, Calendar modified_at, Calendar deleted_at) {
+            this.id = id;
             this.name = name;
             this.email = email;
             this.password = password;
             this.situation = situation;
-            this.profile = profile;
-        }
-
-        public Builder setId(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder setCreated_at(Calendar created_at) {
             this.created_at = created_at;
-            return this;
-        }
-
-        public Builder setModified_at(Calendar modified_at) {
             this.modified_at = modified_at;
-            return this;
+            this.deleted_at = deleted_at;
         }
 
-        public Builder setDeleted_at(Calendar deleted_at) {
-            this.deleted_at = deleted_at;
+        public Builder setProfile(ProfileResponseDTO profile) {
+            this.profile = profile;
             return this;
         }
 

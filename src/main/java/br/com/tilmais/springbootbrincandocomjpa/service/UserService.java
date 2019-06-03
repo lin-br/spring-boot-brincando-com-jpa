@@ -47,7 +47,15 @@ public class UserService {
 
     public List<UserResponseDTO> getAll() {
         List<UserResponseDTO> lista = new ArrayList<>();
-        this.userRepository.findAll().forEach(user -> lista.add(UserConverter.getResponseDTO(user)));
+        this.userRepository.findAll().forEach(user -> lista.add(UserConverter.getDtoFull(user)));
         return lista;
+    }
+
+    public UserResponseDTO getUser(Long id) {
+        Optional<User> optional = this.userRepository.findById(id);
+        if (optional.isPresent()) {
+            return UserConverter.getDtoSimple(optional.get());
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 }

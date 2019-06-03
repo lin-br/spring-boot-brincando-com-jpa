@@ -5,17 +5,31 @@ import br.com.tilmais.springbootbrincandocomjpa.model.entity.User;
 
 public class UserConverter {
 
-    public static UserResponseDTO getResponseDTO(User user) {
+    public static UserResponseDTO getDtoFull(User user) {
         UserResponseDTO.Builder builder = new UserResponseDTO.Builder(
+                user.getId(),
                 user.getName(),
                 user.getEmail(),
                 user.getPassword(),
                 user.getSituation(),
-                ProfileConverter.getResponseDTO(user.getProfile()))
-                .setCreated_at(user.getCreated_at())
-                .setModified_at(user.getModified_at())
-                .setDeleted_at(user.getDeleted_at());
+                user.getCreated_at(),
+                user.getModified_at(),
+                user.getDeleted_at())
+                .setProfile(ProfileConverter.getResponseDTO(user.getProfile()));
         user.getUsersHasRules().forEach(usersHasRules -> builder.addRule(usersHasRules.getRule()));
         return builder.build();
+    }
+
+    public static UserResponseDTO getDtoSimple(User user) {
+        return new UserResponseDTO.Builder(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getSituation(),
+                user.getCreated_at(),
+                user.getModified_at(),
+                user.getDeleted_at())
+                .build();
     }
 }
