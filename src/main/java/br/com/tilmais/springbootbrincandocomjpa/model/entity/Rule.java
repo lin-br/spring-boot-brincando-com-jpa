@@ -35,17 +35,12 @@ public class Rule {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar deleted_at;
 
-    public Rule() {
-    }
-
-    public Rule(String resource, MethodRule method, String description) {
-        this.resource = resource;
-        this.method = method;
-        this.description = description;
-    }
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getResource() {
@@ -74,6 +69,10 @@ public class Rule {
 
     public Calendar getCreated_at() {
         return created_at;
+    }
+
+    public void setCreated_at(Calendar created_at) {
+        this.created_at = created_at;
     }
 
     public Calendar getModified_at() {

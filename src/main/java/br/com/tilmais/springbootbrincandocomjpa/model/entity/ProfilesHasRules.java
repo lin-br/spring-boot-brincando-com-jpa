@@ -35,18 +35,36 @@ public class ProfilesHasRules {
     @ColumnDefault("CURRENT_TIMESTAMP")
     private Calendar registration_date;
 
-    public ProfilesHasRules() {
-    }
-
-    public ProfilesHasRules(Rule rule, Profile profile, User registeredUser) {
-        this.rule = rule;
-        this.profile = profile;
-        this.registeredUser = registeredUser;
-        this.pks = new PksAssociationRulesProfiles(rule.getId(), profile.getId(), registeredUser.getId());
-    }
-
     public PksAssociationRulesProfiles getPks() {
         return pks;
+    }
+
+    public void setPks(PksAssociationRulesProfiles pks) {
+        this.pks = pks;
+    }
+
+    public Rule getRule() {
+        return rule;
+    }
+
+    public void setRule(Rule rule) {
+        this.rule = rule;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public User getRegisteredUser() {
+        return registeredUser;
+    }
+
+    public void setRegisteredUser(User registeredUser) {
+        this.registeredUser = registeredUser;
     }
 
     public LinkStatus getLinkStatus() {
@@ -61,15 +79,7 @@ public class ProfilesHasRules {
         return registration_date;
     }
 
-    public Rule getRule() {
-        return rule;
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public User getRegisteredUser() {
-        return registeredUser;
+    public void setRegistration_date(Calendar registration_date) {
+        this.registration_date = registration_date;
     }
 }

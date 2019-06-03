@@ -5,7 +5,6 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,15 +33,12 @@ public class Profile {
     @OneToMany(mappedBy = "profile")
     private Set<ProfilesHasRules> profilesHasRules = new HashSet<>();
 
-    public Profile() {
-    }
-
-    public Profile(String name) {
-        this.name = name;
-    }
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -55,6 +51,10 @@ public class Profile {
 
     public Calendar getCreated_at() {
         return created_at;
+    }
+
+    public void setCreated_at(Calendar created_at) {
+        this.created_at = created_at;
     }
 
     public Calendar getModified_at() {
@@ -74,11 +74,10 @@ public class Profile {
     }
 
     public Set<ProfilesHasRules> getProfilesHasRules() {
-        return Collections.unmodifiableSet(profilesHasRules);
+        return profilesHasRules;
     }
 
-    public void addRule(Rule rule, User registeredUser) {
-        ProfilesHasRules profilesHasRules = new ProfilesHasRules(rule, this, registeredUser);
-        this.profilesHasRules.add(profilesHasRules);
+    public void setProfilesHasRules(Set<ProfilesHasRules> profilesHasRules) {
+        this.profilesHasRules = profilesHasRules;
     }
 }

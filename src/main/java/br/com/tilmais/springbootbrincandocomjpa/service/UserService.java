@@ -3,7 +3,6 @@ package br.com.tilmais.springbootbrincandocomjpa.service;
 import br.com.tilmais.springbootbrincandocomjpa.dto.request.UserRequestDTO;
 import br.com.tilmais.springbootbrincandocomjpa.dto.response.UserResponseDTO;
 import br.com.tilmais.springbootbrincandocomjpa.model.entity.Profile;
-import br.com.tilmais.springbootbrincandocomjpa.model.entity.SituationUser;
 import br.com.tilmais.springbootbrincandocomjpa.model.entity.User;
 import br.com.tilmais.springbootbrincandocomjpa.model.repository.ProfileRepository;
 import br.com.tilmais.springbootbrincandocomjpa.model.repository.UserRepository;
@@ -34,16 +33,16 @@ public class UserService {
     public URI registerUser(UserRequestDTO request) {
         Optional<Profile> byId = profileRepository.findById(request.getProfile());
         if (byId.isPresent()) {
-            User user = new User(request.getName(),
-                    request.getEmail(),
-                    request.getPassword(),
-                    SituationUser.ACTIVED,
-                    byId.get()
-            );
+            User user = new User();
+            user.setName(request.getName());
+            user.setEmail(request.getEmail());
+            user.setPassword(request.getPassword());
+            user.setProfile(byId.get());
             Long id = this.userRepository.save(user).getId();
             return GeneratorURI.getUriAddId(id);
         }
-        throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "No profile with id: " + request.getProfile());
+        throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+                "No profile with id: " + request.getProfile());
     }
 
     public List<UserResponseDTO> getAll() {

@@ -5,8 +5,6 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -29,6 +27,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 8)
+    @ColumnDefault("'ACTIVED'")
     private SituationUser situation;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -46,33 +45,38 @@ public class User {
     private Calendar deleted_at;
 
     @OneToMany(mappedBy = "user")
-    private Set<UsersHasRules> usersHasRules = new HashSet<>();
-
-    public User() {
-    }
-
-    public User(String name, String email, String password, SituationUser situation, Profile profile) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.situation = situation;
-        this.profile = profile;
-    }
+    private Set<UsersHasRules> usersHasRules;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public SituationUser getSituation() {
@@ -83,18 +87,6 @@ public class User {
         this.situation = situation;
     }
 
-    public Calendar getCreated_at() {
-        return created_at;
-    }
-
-    public Calendar getModified_at() {
-        return modified_at;
-    }
-
-    public Calendar getDeleted_at() {
-        return deleted_at;
-    }
-
     public Profile getProfile() {
         return profile;
     }
@@ -103,32 +95,35 @@ public class User {
         this.profile = profile;
     }
 
-    public Set<UsersHasRules> getUsersHasRules() {
-        return Collections.unmodifiableSet(usersHasRules);
+    public Calendar getCreated_at() {
+        return created_at;
     }
 
-    public void addRule(Rule rule, User registeredUser) {
-        UsersHasRules usersHasRules = new UsersHasRules(rule, this, registeredUser);
-        this.usersHasRules.add(usersHasRules);
+    public void setCreated_at(Calendar created_at) {
+        this.created_at = created_at;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public Calendar getModified_at() {
+        return modified_at;
     }
 
     public void setModified_at(Calendar modified_at) {
         this.modified_at = modified_at;
     }
 
+    public Calendar getDeleted_at() {
+        return deleted_at;
+    }
+
     public void setDeleted_at(Calendar deleted_at) {
         this.deleted_at = deleted_at;
+    }
+
+    public Set<UsersHasRules> getUsersHasRules() {
+        return usersHasRules;
+    }
+
+    public void setUsersHasRules(Set<UsersHasRules> usersHasRules) {
+        this.usersHasRules = usersHasRules;
     }
 }

@@ -20,7 +20,10 @@ public class RuleService {
     }
 
     public URI registerRule(RuleRequestDTO request) {
-        Rule rule = new Rule(request.getResource(), request.getMethod(), request.getDescription());
+        Rule rule = new Rule();
+        rule.setResource(request.getResource());
+        rule.setMethod(request.getMethod());
+        rule.setDescription(request.getDescription());
         return GeneratorURI.getUriAddId(this.ruleRepository.save(rule).getId());
     }
 }

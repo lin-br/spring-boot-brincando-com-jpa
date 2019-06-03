@@ -24,7 +24,8 @@ public class ProfileService {
     }
 
     public URI registerProfile(ProfileRequestDTO request) {
-        Profile profile = new Profile(request.getName());
+        Profile profile = new Profile();
+        profile.setName(request.getName());
         Long id = this.repository.save(profile).getId();
         return GeneratorURI.getUriAddId(id);
     }

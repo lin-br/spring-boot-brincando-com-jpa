@@ -3,7 +3,6 @@ package br.com.tilmais.springbootbrincandocomjpa.model.entity;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Embeddable
 public class PksAssociationRulesProfiles implements Serializable {
@@ -19,39 +18,31 @@ public class PksAssociationRulesProfiles implements Serializable {
     @Column(name = "registered_user_id")
     private Long idRegisteredUser;
 
-    public PksAssociationRulesProfiles() {
-    }
-
-    public PksAssociationRulesProfiles(Long idRule, Long idProfile, Long idRegisteredUser) {
-        this.idRule = idRule;
-        this.idProfile = idProfile;
-        this.idRegisteredUser = idRegisteredUser;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Long getIdRule() {
         return idRule;
     }
 
+    public void setIdRule(Long idRule) {
+        this.idRule = idRule;
+    }
+
     public Long getIdProfile() {
         return idProfile;
+    }
+
+    public void setIdProfile(Long idProfile) {
+        this.idProfile = idProfile;
     }
 
     public Long getIdRegisteredUser() {
         return idRegisteredUser;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (!(object instanceof PksAssociationRulesProfiles)) return false;
-        PksAssociationRulesProfiles that = (PksAssociationRulesProfiles) object;
-        return getIdRule().equals(that.getIdRule()) &&
-                getIdProfile().equals(that.getIdProfile()) &&
-                getIdRegisteredUser().equals(that.getIdRegisteredUser());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getIdRule(), getIdProfile(), getIdRegisteredUser());
+    public void setIdRegisteredUser(Long idRegisteredUser) {
+        this.idRegisteredUser = idRegisteredUser;
     }
 }
