@@ -1,12 +1,14 @@
 package br.com.tilmais.springbootbrincandocomjpa.model.entity;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.Calendar;
 
 @Entity
 @Table(name = "users_has_rules")
+@DynamicInsert
 public class UsersHasRules {
 
     @EmbeddedId
