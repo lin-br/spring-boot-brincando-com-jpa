@@ -1,7 +1,9 @@
 package br.com.tilmais.springbootbrincandocomjpa.controller;
 
+import br.com.tilmais.springbootbrincandocomjpa.dto.request.RuleForUserDTO;
 import br.com.tilmais.springbootbrincandocomjpa.dto.request.UserRequestDTO;
 import br.com.tilmais.springbootbrincandocomjpa.dto.response.UserResponseDTO;
+import br.com.tilmais.springbootbrincandocomjpa.service.UserHasRulesService;
 import br.com.tilmais.springbootbrincandocomjpa.service.UserService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,11 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+    private UserHasRulesService userHasRulesService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserHasRulesService userHasRulesService) {
         this.userService = userService;
+        this.userHasRulesService = userHasRulesService;
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,5 +37,10 @@ public class UserController {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public UserResponseDTO get(@PathVariable Long id) {
         return this.userService.getUser(id);
+    }
+
+    @PostMapping(value = "/{id}/rules/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity registerRuleForUser(@PathVariable Long id, @Valid @RequestBody RuleForUserDTO request) {
+        return ResponseEntity.created(this.userHasRulesService.registerRuleForUser(request, id)).build();
     }
 }
