@@ -18,16 +18,16 @@ import java.net.URI;
 import java.util.Optional;
 
 @Service
-public class UserHasRulesService {
+public class UsersRulesService {
 
     private RuleRepository ruleRepository;
     private UserRepository userRepository;
     private UserHasRulesRepository userHasRulesRepository;
 
     @Autowired
-    public UserHasRulesService(RuleRepository ruleRepository,
-                               UserRepository userRepository,
-                               UserHasRulesRepository userHasRulesRepository) {
+    public UsersRulesService(RuleRepository ruleRepository,
+                             UserRepository userRepository,
+                             UserHasRulesRepository userHasRulesRepository) {
         this.ruleRepository = ruleRepository;
         this.userRepository = userRepository;
         this.userHasRulesRepository = userHasRulesRepository;
