@@ -17,7 +17,7 @@ import java.util.Calendar;
 public class ProfilesHasRules {
 
     @EmbeddedId
-    private PksAssociationRulesProfiles pks = new PksAssociationRulesProfiles();
+    private PksProfilesHasRules pks = new PksProfilesHasRules();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "link_status", nullable = false, length = 8)
@@ -28,11 +28,11 @@ public class ProfilesHasRules {
     @ColumnDefault("CURRENT_TIMESTAMP")
     private Calendar registration_date;
 
-    public PksAssociationRulesProfiles getPks() {
+    public PksProfilesHasRules getPks() {
         return pks;
     }
 
-    public void setPks(PksAssociationRulesProfiles pks) {
+    public void setPks(PksProfilesHasRules pks) {
         this.pks = pks;
     }
 

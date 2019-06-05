@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
-public class PksAssociationRulesProfiles implements Serializable {
+public class PksProfilesHasRules implements Serializable {
 
     private static final long serialVersionUID = -2290603860298289041L;
 
