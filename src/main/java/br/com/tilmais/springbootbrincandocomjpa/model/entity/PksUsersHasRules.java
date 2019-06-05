@@ -6,7 +6,7 @@ import java.io.Serializable;
 @Embeddable
 public class PksUsersHasRules implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -571178021380689798L;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_rule"))
