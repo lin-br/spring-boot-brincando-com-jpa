@@ -30,7 +30,7 @@ public class Profile {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar deleted_at;
 
-    @OneToMany(mappedBy = "profile")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pks.profile")
     private Set<ProfilesHasRules> profilesHasRules = new HashSet<>();
 
     public Long getId() {

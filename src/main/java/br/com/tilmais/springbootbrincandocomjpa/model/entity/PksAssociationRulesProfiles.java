@@ -1,48 +1,46 @@
 package br.com.tilmais.springbootbrincandocomjpa.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
 public class PksAssociationRulesProfiles implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2290603860298289041L;
 
-    @Column(name = "rule_id")
-    private Long idRule;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_rule"))
+    private Rule rule;
 
-    @Column(name = "profile_id")
-    private Long idProfile;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_profile"))
+    private Profile profile;
 
-    @Column(name = "registered_user_id")
-    private Long idRegisteredUser;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_registered_user"))
+    private User registeredUser;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public Rule getRule() {
+        return rule;
     }
 
-    public Long getIdRule() {
-        return idRule;
+    public void setRule(Rule rule) {
+        this.rule = rule;
     }
 
-    public void setIdRule(Long idRule) {
-        this.idRule = idRule;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public Long getIdProfile() {
-        return idProfile;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
-    public void setIdProfile(Long idProfile) {
-        this.idProfile = idProfile;
+    public User getRegisteredUser() {
+        return registeredUser;
     }
 
-    public Long getIdRegisteredUser() {
-        return idRegisteredUser;
-    }
-
-    public void setIdRegisteredUser(Long idRegisteredUser) {
-        this.idRegisteredUser = idRegisteredUser;
+    public void setRegisteredUser(User registeredUser) {
+        this.registeredUser = registeredUser;
     }
 }

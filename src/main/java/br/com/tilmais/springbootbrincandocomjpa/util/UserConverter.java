@@ -16,7 +16,7 @@ public class UserConverter {
                 user.getModified_at(),
                 user.getDeleted_at())
                 .setProfile(ProfileConverter.getResponseDTO(user.getProfile()));
-        user.getUsersHasRules().forEach(usersHasRules -> builder.addRule(usersHasRules.getRule()));
+        user.getUsersHasRules().forEach(usersHasRules -> builder.addRule(usersHasRules.getPks().getRule()));
         return builder.build();
     }
 

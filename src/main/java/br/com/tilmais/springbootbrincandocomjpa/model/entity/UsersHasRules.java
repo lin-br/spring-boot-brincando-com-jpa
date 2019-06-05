@@ -9,25 +9,15 @@ import java.util.Calendar;
 @Entity
 @Table(name = "users_has_rules")
 @DynamicInsert
+@AssociationOverrides({
+        @AssociationOverride(name = "pks.rule", joinColumns = @JoinColumn(name = "rule_id"), foreignKey = @ForeignKey(name = "fk_id_rule")),
+        @AssociationOverride(name = "pks.user", joinColumns = @JoinColumn(name = "user_id"), foreignKey = @ForeignKey(name = "fk_id_user")),
+        @AssociationOverride(name = "pks.registeredUser", joinColumns = @JoinColumn(name = "registered_user_id"), foreignKey = @ForeignKey(name = "fk_id_registered_user"))
+})
 public class UsersHasRules {
 
     @EmbeddedId
-    private PksUsersHasRules pks;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_rule"))
-    @MapsId("idRule")
-    private Rule rule;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_user"))
-    @MapsId("idUser")
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_registered_user"))
-    @MapsId("idRegisteredUser")
-    private User registeredUser;
+    private PksUsersHasRules pks = new PksUsersHasRules();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "link_status", nullable = false, length = 8)
@@ -44,30 +34,6 @@ public class UsersHasRules {
 
     public void setPks(PksUsersHasRules pks) {
         this.pks = pks;
-    }
-
-    public Rule getRule() {
-        return rule;
-    }
-
-    public void setRule(Rule rule) {
-        this.rule = rule;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public User getRegisteredUser() {
-        return registeredUser;
-    }
-
-    public void setRegisteredUser(User registeredUser) {
-        this.registeredUser = registeredUser;
     }
 
     public LinkStatus getLinkStatus() {

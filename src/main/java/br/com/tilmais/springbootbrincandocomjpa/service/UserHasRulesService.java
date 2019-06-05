@@ -40,16 +40,13 @@ public class UserHasRulesService {
             UsersHasRules usersHasRules = new UsersHasRules();
             PksUsersHasRules pksUsersHasRules = new PksUsersHasRules();
 
-            pksUsersHasRules.setIdRule(optionalRule.get().getId());
-            pksUsersHasRules.setIdUser(idUser);
+            pksUsersHasRules.setRule(optionalRule.get());
+            pksUsersHasRules.setUser(optionalUser.get());
 
             // O id do usuário que está cadastrando a regra será pego da autenticação
-            pksUsersHasRules.setIdRegisteredUser(optionalUser.get().getId());
-            usersHasRules.setRegisteredUser(optionalUser.get());
+            pksUsersHasRules.setRegisteredUser(optionalUser.get());
 
             usersHasRules.setPks(pksUsersHasRules);
-            usersHasRules.setUser(optionalUser.get());
-            usersHasRules.setRule(optionalRule.get());
 
             this.userHasRulesRepository.save(usersHasRules);
 

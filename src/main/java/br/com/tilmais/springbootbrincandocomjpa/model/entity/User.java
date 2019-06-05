@@ -44,7 +44,7 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar deleted_at;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pks.user")
     private Set<UsersHasRules> usersHasRules;
 
     public Long getId() {

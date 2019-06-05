@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Set;
 
 @Entity
 @Table(name = "rules")
@@ -34,6 +35,12 @@ public class Rule {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar deleted_at;
+
+    @OneToMany(mappedBy = "pks.rule")
+    private Set<ProfilesHasRules> profilesHasRules;
+
+    @OneToMany(mappedBy = "pks.rule")
+    private Set<UsersHasRules> usersHasRules;
 
     public Long getId() {
         return id;
@@ -89,5 +96,21 @@ public class Rule {
 
     public void setDeleted_at(Calendar deleted_at) {
         this.deleted_at = deleted_at;
+    }
+
+    public Set<ProfilesHasRules> getProfilesHasRules() {
+        return profilesHasRules;
+    }
+
+    public void setProfilesHasRules(Set<ProfilesHasRules> profilesHasRules) {
+        this.profilesHasRules = profilesHasRules;
+    }
+
+    public Set<UsersHasRules> getUsersHasRules() {
+        return usersHasRules;
+    }
+
+    public void setUsersHasRules(Set<UsersHasRules> usersHasRules) {
+        this.usersHasRules = usersHasRules;
     }
 }

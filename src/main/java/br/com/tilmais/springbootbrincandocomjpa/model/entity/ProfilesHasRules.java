@@ -9,25 +9,15 @@ import java.util.Calendar;
 @Entity
 @Table(name = "profiles_has_rules")
 @DynamicInsert
+@AssociationOverrides({
+        @AssociationOverride(name = "pks.rule", joinColumns = @JoinColumn(name = "rule_id"), foreignKey = @ForeignKey(name = "fk_id_rule")),
+        @AssociationOverride(name = "pks.profile", joinColumns = @JoinColumn(name = "profile_id"), foreignKey = @ForeignKey(name = "fk_id_profile")),
+        @AssociationOverride(name = "pks.registeredUser", joinColumns = @JoinColumn(name = "registered_user_id"), foreignKey = @ForeignKey(name = "fk_id_registered_user"))
+})
 public class ProfilesHasRules {
 
     @EmbeddedId
-    private PksAssociationRulesProfiles pks;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_rule"))
-    @MapsId("idRule")
-    private Rule rule;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_profile"))
-    @MapsId("idProfile")
-    private Profile profile;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_registered_user"))
-    @MapsId("idRegisteredUser")
-    private User registeredUser;
+    private PksAssociationRulesProfiles pks = new PksAssociationRulesProfiles();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "link_status", nullable = false, length = 8)
@@ -44,30 +34,6 @@ public class ProfilesHasRules {
 
     public void setPks(PksAssociationRulesProfiles pks) {
         this.pks = pks;
-    }
-
-    public Rule getRule() {
-        return rule;
-    }
-
-    public void setRule(Rule rule) {
-        this.rule = rule;
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
-    public User getRegisteredUser() {
-        return registeredUser;
-    }
-
-    public void setRegisteredUser(User registeredUser) {
-        this.registeredUser = registeredUser;
     }
 
     public LinkStatus getLinkStatus() {

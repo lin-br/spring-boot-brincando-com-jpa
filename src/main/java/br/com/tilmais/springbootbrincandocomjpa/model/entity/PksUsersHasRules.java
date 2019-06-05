@@ -1,7 +1,6 @@
 package br.com.tilmais.springbootbrincandocomjpa.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
@@ -9,40 +8,38 @@ public class PksUsersHasRules implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "rule_id")
-    private Long idRule;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_rule"))
+    private Rule rule;
 
-    @Column(name = "user_id")
-    private Long idUser;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_id_user"))
+    private User user;
 
-    @Column(name = "registered_user_id")
-    private Long idRegisteredUser;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private User registeredUser;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public Rule getRule() {
+        return rule;
     }
 
-    public Long getIdRule() {
-        return idRule;
+    public void setRule(Rule rule) {
+        this.rule = rule;
     }
 
-    public void setIdRule(Long idRule) {
-        this.idRule = idRule;
+    public User getUser() {
+        return user;
     }
 
-    public Long getIdUser() {
-        return idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
+    public User getRegisteredUser() {
+        return registeredUser;
     }
 
-    public Long getIdRegisteredUser() {
-        return idRegisteredUser;
-    }
-
-    public void setIdRegisteredUser(Long idRegisteredUser) {
-        this.idRegisteredUser = idRegisteredUser;
+    public void setRegisteredUser(User registeredUser) {
+        this.registeredUser = registeredUser;
     }
 }
