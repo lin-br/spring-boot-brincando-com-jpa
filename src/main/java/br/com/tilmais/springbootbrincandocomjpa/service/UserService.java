@@ -10,6 +10,7 @@ import br.com.tilmais.springbootbrincandocomjpa.util.GeneratorURI;
 import br.com.tilmais.springbootbrincandocomjpa.util.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -36,7 +37,7 @@ public class UserService {
             User user = new User();
             user.setName(request.getName());
             user.setEmail(request.getEmail());
-            user.setPassword(request.getPassword());
+            user.setPassword(BCrypt.hashpw(request.getPassword(), BCrypt.gensalt()));
             user.setProfile(byId.get());
             Long id = this.userRepository.save(user).getId();
             return GeneratorURI.getUriAddId(id);
