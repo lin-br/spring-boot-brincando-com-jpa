@@ -1,8 +1,9 @@
 package br.com.tilmais.springbootbrincandocomjpa.settings.security;
 
+import br.com.tilmais.springbootbrincandocomjpa.util.UnauthorizedUtil;
 import io.jsonwebtoken.JwtException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.server.MethodNotAllowedException;
@@ -22,11 +23,10 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
 
         try {
             filterChain.doFilter(request, response);
-        } catch (JwtException e) {
+        } catch (JwtException | AuthenticationException e) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
-            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
             response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
-            response.getWriter().write("{\"mensagem\":\"" + e.getMessage() + "\"}");
+            response.setHeader(UnauthorizedUtil.WWWAuthenticate, UnauthorizedUtil.getWWWAuthenticate(request, e));
         } catch (MethodNotAllowedException e) {
             response.setStatus(e.getStatus().value());
         }

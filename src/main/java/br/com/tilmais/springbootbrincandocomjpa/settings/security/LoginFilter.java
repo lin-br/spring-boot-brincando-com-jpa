@@ -3,8 +3,10 @@ package br.com.tilmais.springbootbrincandocomjpa.settings.security;
 import br.com.tilmais.springbootbrincandocomjpa.dto.request.LoginRequestDTO;
 import br.com.tilmais.springbootbrincandocomjpa.service.jwt.JwtCreator;
 import br.com.tilmais.springbootbrincandocomjpa.settings.ApplicationProperties;
+import br.com.tilmais.springbootbrincandocomjpa.util.UnauthorizedUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,6 +18,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 public class LoginFilter extends AbstractAuthenticationProcessingFilter {
@@ -41,6 +44,16 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
         );
 
         return getAuthenticationManager().authenticate(authentication);
+    }
+
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request,
+                                              HttpServletResponse response,
+                                              AuthenticationException failed) {
+
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
+        response.setHeader(UnauthorizedUtil.WWWAuthenticate, UnauthorizedUtil.getWWWAuthenticate(request, failed));
     }
 
     @Override
