@@ -2,6 +2,7 @@ package br.com.tilmais.springbootbrincandocomjpa.model.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class PksProfilesHasRules implements Serializable {
@@ -43,4 +44,20 @@ public class PksProfilesHasRules implements Serializable {
     public void setRegisteredUser(User registeredUser) {
         this.registeredUser = registeredUser;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PksProfilesHasRules)) return false;
+        PksProfilesHasRules that = (PksProfilesHasRules) o;
+        return getRule().equals(that.getRule()) &&
+                getProfile().equals(that.getProfile()) &&
+                getRegisteredUser().equals(that.getRegisteredUser());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRule(), getProfile(), getRegisteredUser());
+    }
+
 }
