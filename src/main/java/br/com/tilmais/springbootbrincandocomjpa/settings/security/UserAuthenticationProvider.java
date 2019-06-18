@@ -39,7 +39,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         User user = this.userRepository.findByEmail(email);
 
         if (BCrypt.checkpw(password, user.getPassword())) {
-            return new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword());
+            return new UsernamePasswordAuthenticationToken(user.getId(), user.getPassword());
         }
         throw new BadCredentialsException("Username and password not found");
     }
