@@ -2,6 +2,12 @@ application:
   name: @project.name@
   description: @project.description@
   version: @project.version@
+  token:
+    durationInMilliseconds: 600000
+    key: "txp2wk99k6UKGM9Lr+DX29v0lntp9RTwQUiv+ZzOYoA="
+    header: "Authorization"
+    prefix: "Bearer"
+    claimsName: "permissoes"
 
 server:
   servlet:

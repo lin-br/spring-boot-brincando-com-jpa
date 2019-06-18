@@ -28,6 +28,7 @@
         <version.postgres>42.2.5</version.postgres>
         <version.jjwt>0.9.1</version.jjwt>
         <version.spring.boot.secutiry>2.1.5.RELEASE</version.spring.boot.secutiry>
+        <version.spring.boot.configuration.processor>2.1.5.RELEASE</version.spring.boot.configuration.processor>
     </properties>
 
     <dependencies>
@@ -70,6 +71,12 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${version.jjwt}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>${version.spring.boot.configuration.processor}</version>
         </dependency>
     </dependencies>
 
