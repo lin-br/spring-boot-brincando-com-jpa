@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.net.URISyntaxException;
 
 @RestController
 @RequestMapping(value = "/users/{idUser}/rules",
@@ -23,7 +24,8 @@ public class UsersRulesControllers {
     }
 
     @PostMapping
-    public ResponseEntity registerRule(@PathVariable Long idUser, @Valid @RequestBody RuleForUserDTO request) {
+    public ResponseEntity registerRule(@PathVariable Long idUser, @Valid @RequestBody RuleForUserDTO request)
+            throws URISyntaxException {
         return ResponseEntity.created(this.usersRulesService.registerRuleForUser(request, idUser)).build();
     }
 }

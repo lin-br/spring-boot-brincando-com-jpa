@@ -11,10 +11,18 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.net.URISyntaxException;
 import java.util.Calendar;
 
 @ControllerAdvice
 public class ProjectExceptionsHandler {
+
+    @ExceptionHandler(value = URISyntaxException.class)
+    public ResponseEntity<BasicResponseForExceptions> handlerURISyntaxException(URISyntaxException ex) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new BasicResponseForExceptions(Calendar.getInstance(), ex.getMessage()));
+    }
 
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
