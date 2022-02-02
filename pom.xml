@@ -25,7 +25,7 @@
         <version.spring.boot.web>2.1.5.RELEASE</version.spring.boot.web>
         <version.spring.boot.tomcat>2.1.5.RELEASE</version.spring.boot.tomcat>
         <version.spring.boot.test>2.1.5.RELEASE</version.spring.boot.test>
-        <version.postgres>42.2.5</version.postgres>
+        <version.postgres>42.2.25</version.postgres>
         <version.jjwt>0.9.1</version.jjwt>
         <version.spring.boot.secutiry>2.1.5.RELEASE</version.spring.boot.secutiry>
         <version.spring.boot.configuration.processor>2.1.5.RELEASE</version.spring.boot.configuration.processor>
