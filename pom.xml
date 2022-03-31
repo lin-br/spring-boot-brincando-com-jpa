@@ -22,7 +22,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <version.spring.boot.jpa>2.1.5.RELEASE</version.spring.boot.jpa>
-        <version.spring.boot.web>2.1.5.RELEASE</version.spring.boot.web>
+        <version.spring.boot.web>2.5.12</version.spring.boot.web>
         <version.spring.boot.tomcat>2.1.5.RELEASE</version.spring.boot.tomcat>
         <version.spring.boot.test>2.1.5.RELEASE</version.spring.boot.test>
         <version.postgres>42.2.5</version.postgres>
